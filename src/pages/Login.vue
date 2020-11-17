@@ -2,7 +2,7 @@
   <div class="text-white text-center q-pa-md">
     <div class="row q-col-gutter-md justify-center" style="margin-top: 15vh">
       <div class="col-12" style="font-size: 10vh; margin-bottom: 5vh">
-        Spotify
+        yfiTops
       </div>
 
       <q-input
