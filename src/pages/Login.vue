@@ -5,30 +5,13 @@
         yfiTops
       </div>
 
-      <q-input
-        outlined
-        bg-color="grey-7"
-        v-model="login"
-        class="col-12"
-        label="Nome ou usuário"
-        filled
-      />
-
-      <q-input
-        outlined
-        bg-color="grey-7"
-        v-model="senha"
-        class="col-12"
-        label="Nome ou usuário"
-        filled
-      />
-
       <div class="row col-12">
         <q-btn
           class="col-12"
           color="primary"
-          label="Entrar"
-          @click="Login"
+          label="Autentificar"
+          type="a"
+          href="http://localhost:8888/login"
         />
       </div>
     </div>

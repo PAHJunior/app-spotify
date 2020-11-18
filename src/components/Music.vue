@@ -47,7 +47,7 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: 'Music',
   data () {
     return {
       url: 'https://placeimg.com/500/300/nature',

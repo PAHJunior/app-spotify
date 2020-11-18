@@ -7,11 +7,11 @@
         class="bg-transparent"
       >
         <q-tab-panel name="home">
-          <home-music></home-music>
+          <component-playlist></component-playlist>
         </q-tab-panel>
 
         <q-tab-panel name="music">
-
+          <component-music></component-music>
         </q-tab-panel>
         <q-tab-panel name="sliders">
           <div class="text-h6">Sliders</div>
@@ -35,17 +35,18 @@
 </template>
 
 <script>
-import HomeMusic from '../components/home'
-
+import ComponentMusic from '../components/music'
+import ComponentPlaylist from '../components/playlist'
 export default {
   name: 'PageIndex',
   data () {
     return {
-      tab: 'home'
+      tab: 'music'
     }
   },
   components: {
-    HomeMusic
+    ComponentMusic,
+    ComponentPlaylist
   },
   computed: {
     minute: function () {
@@ -54,6 +55,16 @@ export default {
     finish: function () {
       return this.finishminute.toFixed(2)
     }
+  },
+  methods: {
+    getParams () {
+      this.$q.sessionStorage.set('token', this.$route.query)
+      const token = this.$q.sessionStorage.getItem('token')
+      console.log(token)
+    }
+  },
+  mounted () {
+    this.getParams()
   }
 }
 </script>

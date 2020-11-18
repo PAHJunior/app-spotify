@@ -21,19 +21,21 @@
           <q-menu>
             <div class="row no-wrap q-pa-md">
               <div class="col-12 items-center">
-                <q-avatar size="72px">
-                  <img src="https://cdn.quasar.dev/img/avatar4.jpg">
+                <q-avatar square size="190px">
+                  <img :src="photoprofile">
                 </q-avatar>
 
-                <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div>
+                <div class="text-subtitle1 q-mt-md q-mb-xs">{{ name }}</div>
 
-                <q-btn
-                  class="col-12"
-                  color="primary"
-                  label="Logout"
-                  size="sm"
-                  @click="Logout"
-                />
+                <div class="col-12 row">
+                  <q-btn
+                    class="col-12"
+                    color="primary"
+                    label="Logout"
+                    size="sm"
+                    @click="Logout"
+                  />
+                </div>
               </div>
             </div>
           </q-menu>
@@ -47,20 +49,36 @@
 </template>
 
 <script>
-
+import Profile from '../service/profile'
 export default {
   name: 'MainLayout',
   data () {
     return {
       search: '',
       mobileData: true,
-      bluetooth: false
+      bluetooth: false,
+      name: '',
+      photoprofile: ''
     }
   },
   methods: {
     Logout () {
       this.$router.push('/')
+    },
+    getProfile () {
+      Profile.getProfile()
+        .then((profile) => {
+          this.$q.sessionStorage.set('profile', profile.data)
+          this.photoprofile = profile.data.images[0].url
+          this.name = profile.data.display_name
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
+  },
+  mounted () {
+    this.getProfile()
   }
 }
 </script>

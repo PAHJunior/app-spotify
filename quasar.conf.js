@@ -7,7 +7,7 @@
 // https://quasar.dev/quasar-cli/quasar-conf-js
 /* eslint-env node */
 
-module.exports = function (/* ctx */) {
+module.exports = function (ctx) {
   return {
     // https://quasar.dev/quasar-cli/supporting-ts
     supportTS: false,
@@ -61,6 +61,13 @@ module.exports = function (/* ctx */) {
 
       // Options below are automatically set depending on the env, set them if you want to override
       // extractCSS: false,
+      env: ctx.dev ? {
+        VERSAO: JSON.stringify(require('./package.json').version),
+        API: 'https://api.spotify.com/v1'
+      } : {
+        VERSAO: JSON.stringify(require('./package.json').version),
+        API: 'https://api.spotify.com/v1'
+      },
 
       // https://quasar.dev/quasar-cli/handling-webpack
       extendWebpack (cfg) {
@@ -99,7 +106,9 @@ module.exports = function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'SessionStorage'
+      ]
     },
 
     // animations: 'all', // --- includes all animations
