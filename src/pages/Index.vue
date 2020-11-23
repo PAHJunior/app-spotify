@@ -7,11 +7,11 @@
         class="bg-transparent"
       >
         <q-tab-panel name="home">
-          <component-playlist></component-playlist>
+          <component-player></component-player>
         </q-tab-panel>
 
         <q-tab-panel name="music">
-          <component-music></component-music>
+          <component-playlist></component-playlist>
         </q-tab-panel>
         <q-tab-panel name="sliders">
           <div class="text-h6">Sliders</div>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import ComponentMusic from '../components/music'
+import ComponentPlayer from '../components/player'
 import ComponentPlaylist from '../components/playlist'
 export default {
   name: 'PageIndex',
@@ -45,7 +45,7 @@ export default {
     }
   },
   components: {
-    ComponentMusic,
+    ComponentPlayer,
     ComponentPlaylist
   },
   computed: {

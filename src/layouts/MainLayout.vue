@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header class="bg-transparent">
+    <q-header :class="visibleClass">
       <q-toolbar>
         <q-input class="col-10" dark dense standout v-model="search">
           <template v-slot:prepend>
@@ -42,6 +42,7 @@
         </q-btn>
       </q-toolbar>
     </q-header>
+    <div v-intersection="onIntersection"></div>
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -54,6 +55,7 @@ export default {
   name: 'MainLayout',
   data () {
     return {
+      visible: false,
       search: '',
       mobileData: true,
       bluetooth: false,
@@ -61,7 +63,15 @@ export default {
       photoprofile: ''
     }
   },
+  computed: {
+    visibleClass () {
+      return `fixed-top bg-${this.visible ? 'transparent' : 'dark'}`
+    }
+  },
   methods: {
+    onIntersection (entry) {
+      this.visible = entry.isIntersecting
+    },
     Logout () {
       this.$router.push('/')
     },

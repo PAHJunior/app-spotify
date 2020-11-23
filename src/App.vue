@@ -12,6 +12,9 @@
 
 <script>
 export default {
+  mounted () {
+    window.onSpotifyWebPlaybackSDKReady = () => {}
+  },
   name: 'App'
 }
 </script>
